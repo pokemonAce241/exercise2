@@ -178,7 +178,7 @@ function main() {
     var hc = new Color(); // horizontal color
     var hDelta = 1 / (urx-ulx); // norm'd horizontal delta
     var hcDelta = new Color(); // horizontal color delta
-    var ratio = 15/10; // aspect ratio
+    var ratio = (urx-ury)/(lly-llx); // aspect ratio
     var max = 0; 
     
     // do the interpolation
