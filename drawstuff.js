@@ -178,17 +178,20 @@ function main() {
     var hc = new Color(); // horizontal color
     var hDelta = 1 / (urx-ulx); // norm'd horizontal delta
     var hcDelta = new Color(); // horizontal color delta
+    var ratio = (urx-ulx)/(ury-lry); // aspect ratio
+    var max = 0; 
     
     // do the interpolation
     for (var y=uly; y<=lly; y++) {
         hc.copy(lc); // begin with the left color
         hcDelta.copy(rc).subtract(lc).scale(hDelta); // reset horiz color delta
-        for (var x=ulx; x<=urx; x++) {
+        for (var x=ulx; x<=urx-max; x++) {
             drawPixel(imagedata,x,y,hc);
             hc.add(hcDelta);
         } // end horizontal
         lc.add(lcDelta);
         rc.add(rcDelta);
+        max += ratio;
     } // end vertical
     
     context.putImageData(imagedata, 0, 0); // display the image in the context
